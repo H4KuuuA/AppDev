@@ -4,15 +4,45 @@
 //
 //  Created by 大江悠都 on 2024/11/19.
 //
-
+import UIKit
 import SwiftUI
 
-struct DocumentPickerView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct DocumentPicker: UIViewControllerRepresentable {
+    @Binding var selectedURL: URL?
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf])
+        picker.delegate = context.coordinator
+        picker.allowsMultipleSelection = false
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+    
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        var parent: DocumentPicker
+        
+        init(_ parent: DocumentPicker) {
+            self.parent = parent
+        }
+        
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+                // ここでif letを使ってURLが取得できたか確認
+                if let selectedURL = urls.first {
+                    parent.selectedURL = selectedURL
+                } else {
+                    print("PDFが選択されませんでした。")
+                }
+            }
+        
+        func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+            // ユーザーがキャンセルした場合の処理
+        }
     }
 }
 
-#Preview {
-    DocumentPickerView()
-}
+
