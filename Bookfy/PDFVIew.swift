@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum PDF {
+    static let single = "Single PDF"
+    static let multiple = "Multiple PDF"
+}
 struct PDFVIew: View {
     @State private var selectedPDF: URL?
     @State private var showDocumentPicker = false
