@@ -29,7 +29,7 @@ struct PDFVIew: View {
                     
                     if let pdfURL = selectedPDF {
                         NavigationLink("選択したPDFを表示") {
-                            //PDFViewer(fileURL: pdfURL)
+                            PDFViewer(fileURL: pdfURL)
                         }
                     }
                 } header: {
