@@ -11,6 +11,7 @@ import PDFKit
 struct PDFViewer: View {
     @State private var currentPageIndex = 0
     private let document: PDFDocument?
+    @State private var recognisedText: String = ""
     
     init(fileURL: URL) {
         self.document = PDFDocument(url: fileURL)
@@ -53,6 +54,12 @@ struct PDFViewer: View {
                     })
                     .disabled(!(currentPageIndex < document.pageCount-1))
                 }
+            }
+        }
+        .onAppear {
+            // PDFが表示されるときにOCRを実行
+            if let document = self.document, let images = ScanDocumentView.extractImagesFromPDF(pdfDocument: document) {
+                recognisedText = ScanDocumentView.performOCR(on: images)
             }
         }
     }

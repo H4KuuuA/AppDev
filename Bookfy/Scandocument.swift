@@ -39,7 +39,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     }
     
     // PDFのページを画像に変換する関数
-    func extractImagesFromPDF(pdfDocument: PDFDocument) -> [CGImage]? {
+   static  func extractImagesFromPDF(pdfDocument: PDFDocument) -> [CGImage]? {
         var extractedImages = [CGImage]()
         
         for pageIndex in 0..<pdfDocument.pageCount{
@@ -65,7 +65,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     }
     
     //OCRを実行する関数
-    func performOCR(on images: [CGImage]) -> String {
+    static func performOCR(on images: [CGImage]) -> String {
         var entireRecognisedText = ""
         
         let recognisedTextRequest = VNRecognizeTextRequest {request, error in
