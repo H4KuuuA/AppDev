@@ -63,6 +63,34 @@ struct ScanDocumentView: UIViewControllerRepresentable {
         }
         return extractedImages.isEmpty ? nil : extractedImages
     }
+    
+    //OCRを実行する関数
+    func performOCR(on images: [CGImage]) -> String {
+        var entireRecognisedText = ""
+        
+        let recognisedTextRequest = VNRecognizeTextRequest {request, error in
+            guard error == nil else { return }
+            
+            guard let obserbations = request.results as? [VNRecognizedTextObservation] else { return }
+            
+            let maximumRecognitionCondidates = 1
+            
+            for obserbation in obserbations {
+                guard let candidate = obserbation.topCandidates(maximumRecognitionCondidates).first else {
+                    continue
+                }
+                entireRecognisedText += "\(candidate.string)\n"
+            }
+        }
+        
+        recognisedTextRequest.recognitionLevel = .accurate
+        
+        for image in images {
+            let requestHandler = VNImageRequestHandler(cgImage: image, options: [:])
+            try? requestHandler.perform([recognisedTextRequest])
+        }
+        return entireRecognisedText
+    }
     // UIViewControllerRepresentableにおけるデリゲートとデータの管理
     // スキャンした画像の処理
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
