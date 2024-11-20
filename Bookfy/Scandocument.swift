@@ -15,6 +15,7 @@
 import SwiftUI
 import Vision
 import VisionKit
+import PDFKit
 
 struct ScanDocumentView: UIViewControllerRepresentable {
     
@@ -37,6 +38,31 @@ struct ScanDocumentView: UIViewControllerRepresentable {
         
     }
     
+    // PDFのページを画像に変換する関数
+    func extractImagesFromPDF(pdfDocument: PDFDocument) -> [CGImage]? {
+        var extractedImages = [CGImage]()
+        
+        for pageIndex in 0..<pdfDocument.pageCount{
+            guard let page = pdfDocument.page(at: pageIndex) else {
+                continue
+                
+            }
+            
+            //PDFページをUIImageに変換
+            let pageBounds = page.bounds(for: .mediaBox)
+            let renderer = UIGraphicsImageRenderer(size: pageBounds.size)
+            
+            let image = renderer.image { context in
+                UIColor.white.set()
+                context.fill(pageBounds)
+                page.draw(with: .mediaBox, to: context.cgContext)
+            }
+            if let cgImage = image.cgImage {
+                extractedImages.append(cgImage)
+            }
+        }
+        return extractedImages.isEmpty ? nil : extractedImages
+    }
     // UIViewControllerRepresentableにおけるデリゲートとデータの管理
     // スキャンした画像の処理
     class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
