@@ -14,6 +14,7 @@ enum PDF {
 struct PDFVIew: View {
     @State private var selectedPDF: URL?
     @State private var showDocumentPicker = false
+    @State private var recognisedText: String = ""  // OCR結果を保存する状態変数
     
     var body: some View {
         NavigationStack {
@@ -29,12 +30,21 @@ struct PDFVIew: View {
                     
                     if let pdfURL = selectedPDF {
                         NavigationLink("選択したPDFを表示") {
-                            PDFViewer(fileURL: pdfURL)
+                            PDFViewer(fileURL: pdfURL, recognisedText: $recognisedText)  // バインディングを渡す
                         }
                     }
                 } header: {
                     Text("Select PDF from Files")
                         .textCase(.none)
+                }
+                // OCR結果表示セクション
+                if !recognisedText.isEmpty {
+                    Section(header: Text("OCR Result")) {
+                        ScrollView {
+                            Text(recognisedText)
+                                .padding()
+                        }
+                    }
                 }
             }
         }

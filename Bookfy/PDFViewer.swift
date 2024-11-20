@@ -11,10 +11,11 @@ import PDFKit
 struct PDFViewer: View {
     @State private var currentPageIndex = 0
     private let document: PDFDocument?
-    @State private var recognisedText: String = ""
+    @Binding var recognisedText: String // OCR結果をバインド変数として受け取る
     
-    init(fileURL: URL) {
+    init(fileURL: URL, recognisedText: Binding<String>) {
         self.document = PDFDocument(url: fileURL)
+        _recognisedText = recognisedText  // 初期化時にバインド変数を設定
     }
     
     var body: some View {
@@ -93,7 +94,9 @@ struct PDFViewer_Previews: PreviewProvider {
     static var previews: some View {
         // pdfURLはプロジェクト内にあるPDFファイルのURLです。
         if let url = Bundle.main.url(forResource: "example", withExtension: "pdf") {
-            PDFViewer(fileURL: url)
+            // プレビュー用にStateを作成して、recognisedTextをバインディングとして渡す
+            PDFViewer(fileURL: Bundle.main.url(forResource: "example", withExtension: "pdf")!,
+                      recognisedText: .constant(""))  // 空の文字列で初期化したバインディング
         } else {
             Text("PDFファイルが見つかりません")
         }
