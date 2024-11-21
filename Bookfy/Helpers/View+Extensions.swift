@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-struct View_Extensions: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+extension View {
+    ///Custom Spacers
+    @ViewBuilder
+    func  hSpacing(_ alignment: Alignment) -> some View {
+        self
+            .frame(maxWidth: .infinity, alignment: alignment)
     }
-}
-
-#Preview {
-    View_Extensions()
+    @ViewBuilder
+    func  vSpacing(_ alignment: Alignment) -> some View {
+        self
+            .frame(maxHeight: .infinity, alignment: alignment)
+    }
 }
