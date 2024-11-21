@@ -17,9 +17,7 @@ import Vision
 import VisionKit
 import PDFKit
 
-struct ScanDocumentView: UIViewControllerRepresentable {
-    
-    @Environment(\.presentationMode) var presentationMode
+struct ScanDocumentView: UIViewControllerRepresentable { @Environment(\.presentationMode) var presentationMode
     @Binding var recognised: String
     
     // UIkitのビューコントローラーとSwiftUIのデータやイベントのやり取り
@@ -39,7 +37,7 @@ struct ScanDocumentView: UIViewControllerRepresentable {
     }
     
     // PDFのページを画像に変換する関数
-   static  func extractImagesFromPDF(pdfDocument: PDFDocument) -> [CGImage]? {
+    static  func extractImagesFromPDF(pdfDocument: PDFDocument) -> [CGImage]? {
         var extractedImages = [CGImage]()
         
         for pageIndex in 0..<pdfDocument.pageCount{
@@ -82,8 +80,14 @@ struct ScanDocumentView: UIViewControllerRepresentable {
                 entireRecognisedText += "\(candidate.string)\n"
             }
         }
-        
+        let request = VNRecognizeTextRequest()
         recognisedTextRequest.recognitionLevel = .accurate
+        recognisedTextRequest.customWords = ["日本語", "テスト"]  // より精度を上げたい場合、カスタムワードを指定できます
+        
+        // 言語を日本語に指定
+        recognisedTextRequest.recognitionLanguages = ["ja-JP"]
+        // 言語補正フラグ
+        request.usesLanguageCorrection = true
         
         for image in images {
             let requestHandler = VNImageRequestHandler(cgImage: image, options: [:])

@@ -18,6 +18,8 @@
 		68071CC92CEC5305004AF02B /* PDFVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CC82CEC5305004AF02B /* PDFVIew.swift */; };
 		68071CCB2CEC588C004AF02B /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CCA2CEC588C004AF02B /* PDFViewer.swift */; };
 		68071CCF2CED65EA004AF02B /* Scandocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CCE2CED65EA004AF02B /* Scandocument.swift */; };
+		68071CD12CEFFB8E004AF02B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CD02CEFFB8E004AF02B /* SettingView.swift */; };
+		68071CD42CEFFFD2004AF02B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CD32CEFFFD2004AF02B /* View+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		68071CC82CEC5305004AF02B /* PDFVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFVIew.swift; sourceTree = "<group>"; };
 		68071CCA2CEC588C004AF02B /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
 		68071CCE2CED65EA004AF02B /* Scandocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scandocument.swift; sourceTree = "<group>"; };
+		68071CD02CEFFB8E004AF02B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		68071CD32CEFFFD2004AF02B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				68071C9A2CEC343F004AF02B /* BookfyApp.swift */,
+				68071CD22CEFFF9A004AF02B /* Helpers */,
+				68071CD02CEFFB8E004AF02B /* SettingView.swift */,
 				68071C9C2CEC343F004AF02B /* ContentView.swift */,
 				68071CC82CEC5305004AF02B /* PDFVIew.swift */,
 				68071CCE2CED65EA004AF02B /* Scandocument.swift */,
@@ -137,6 +143,14 @@
 				68071CB72CEC3441004AF02B /* BookfyUITestsLaunchTests.swift */,
 			);
 			path = BookfyUITests;
+			sourceTree = "<group>";
+		};
+		68071CD22CEFFF9A004AF02B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				68071CD32CEFFFD2004AF02B /* View+Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +286,10 @@
 				68071C9D2CEC343F004AF02B /* ContentView.swift in Sources */,
 				68071CC92CEC5305004AF02B /* PDFVIew.swift in Sources */,
 				68071CC72CEC51AE004AF02B /* DocumentPickerView.swift in Sources */,
+				68071CD12CEFFB8E004AF02B /* SettingView.swift in Sources */,
 				68071CCB2CEC588C004AF02B /* PDFViewer.swift in Sources */,
 				68071C9B2CEC343F004AF02B /* BookfyApp.swift in Sources */,
+				68071CD42CEFFFD2004AF02B /* View+Extensions.swift in Sources */,
 				68071CCF2CED65EA004AF02B /* Scandocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
