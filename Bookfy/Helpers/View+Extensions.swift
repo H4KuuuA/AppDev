@@ -27,10 +27,23 @@ extension View {
                     let size = $0.size
                     
                     self
-                        /// Flipping Upside Down
+                    /// Flipping Upside Down
                         .scaleEffect(y: -1)
-                        /// Moving to Bottom
-                        .offset(y: size .height)
+                        .mask {
+                            Rectangle()
+                                .fill(
+                                    .linearGradient(colors: [
+                                        .white,
+                                        .white.opacity(0.7),
+                                        .white.opacity(0.5),
+                                        .white.opacity(0.3),
+                                        .white.opacity(0.1),
+                                        .white.opacity(0),
+                                    ], startPoint: .top, endPoint: .bottom)
+                                )
+                        }
+                    /// Moving to Bottom
+                        .offset(y: size .height + 5)
                 }
             }
     }
