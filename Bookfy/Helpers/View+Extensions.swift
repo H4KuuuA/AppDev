@@ -19,4 +19,19 @@ extension View {
         self
             .frame(maxHeight: .infinity, alignment: alignment)
     }
+    @ViewBuilder
+    func reflection(_added: Bool) -> some View {
+        self
+            .overlay {
+                GeometryReader {
+                    let size = $0.size
+                    
+                    self
+                        /// Flipping Upside Down
+                        .scaleEffect(y: -1)
+                        /// Moving to Bottom
+                        .offset(y: size .height)
+                }
+            }
+    }
 }
