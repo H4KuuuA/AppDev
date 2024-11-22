@@ -23,8 +23,8 @@ struct ContentView: View {
                 HomeView(
                     itemWidth: 280,
                     enableReflection: enableReflection,
-                    spacing: 0,
-                    rotation: 0,
+                    spacing: spacing,
+                    rotation: rotation,
                     items: items
                 ) {item in
                 RoundedRectangle(cornerRadius: 20)
