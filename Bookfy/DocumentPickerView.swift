@@ -5,7 +5,26 @@
 //  Created by 大江悠都 on 2024/11/19.
 //
 import SwiftUI
+import PDFKit
 
+// PDFデータをローカルストレージに保存する関数
+func savePDFToLcalStorage(pdfData: Data, fileName: String) -> URL? {
+    let fileManager = FileManager.default
+    guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+        return nil
+    }
+    // 保存先のファイルURLを作成
+    let fileURL = documentsDirectory.appendingPathComponent(fileName)
+    
+    do {
+        try pdfData.write(to: fileURL)
+        print ("PDF saved at: \(fileURL.path)")
+        return fileURL
+    } catch {
+        print("Error saving PDF: \(error)")
+        return nil
+    }
+}
 struct DocumentPicker: UIViewControllerRepresentable {
     @Binding var selectedURL: URL?
     
