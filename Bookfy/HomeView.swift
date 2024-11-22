@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView<Content: View, Item: RandomAccessCollection>: View where Item.Element: Identifiable{
     var itemWidth : CGFloat
+    var enableReflection: Bool = false
     var spacing : CGFloat = 0
     var rotation: Double
     var items: Item

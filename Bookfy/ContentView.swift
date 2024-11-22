@@ -14,7 +14,7 @@ struct ContentView: View {
     /// View properities
     @State private var spacing: CGFloat = 0
     @State private var rotation: CGFloat = .zero
-    @State private var enableRefletion: Bool = false
+    @State private var enableReflection: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -22,6 +22,7 @@ struct ContentView: View {
                 Spacer(minLength: 0)
                 HomeView(
                     itemWidth: 280,
+                    enableReflection: enableReflection,
                     spacing: 0,
                     rotation: 0,
                     items: items
@@ -35,7 +36,7 @@ struct ContentView: View {
                 
                 /// Customization View
                 VStack(alignment: .leading, spacing: 10, content: {
-                    Toggle("Toggle reflection", isOn: $enableRefletion)
+                    Toggle("Toggle reflection", isOn: $enableReflection)
                         .font(.caption2)
                         .foregroundColor(.gray)
                     Slider(value: $spacing, in: -90...20)
