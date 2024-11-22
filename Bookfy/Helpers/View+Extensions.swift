@@ -44,6 +44,7 @@ extension View {
                         }
                     /// Moving to Bottom
                         .offset(y: size .height + 5)
+                        .opacity(0.5)
                 }
             }
     }
