@@ -39,7 +39,7 @@ extension View {
                                         .white.opacity(0.3),
                                         .white.opacity(0.1),
                                         .white.opacity(0),
-                                    ], startPoint: .top, endPoint: .bottom)
+                                    ] + Array(repeating: Color .clear, count:  5), startPoint: .top, endPoint: .bottom)
                                 )
                         }
                     /// Moving to Bottom
