@@ -7,12 +7,28 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeView<Content: View, Item: RandomAccessCollection>: View where Item.Element: Identifiable{
+    var itemWidth : CGFloat
+    var items: Item
+    var content: (Item.Element) -> Content
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.horizontal){
+            LazyHStack(spacing: 0){
+                ForEach(items) { item in
+                    content(item)
+                        .frame(width: itemWidth)
+                }
+            }
+        }
     }
 }
 
+/// Cover Flow Item Model
+struct CoverFlowItem: Identifiable {
+    let id : UUID = .init()
+    var color: Color
+}
 #Preview {
     ContentView()
 }
