@@ -9,10 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        PDFVIew()
+        NavigationStack{
+            VStack{
+                
+            }
+            .navigationTitle("Bookfy")
+        }
+        .preferredColorScheme(.dark)
     }
 }
 
 #Preview {
-    PDFVIew()
+    ContentView()
 }
