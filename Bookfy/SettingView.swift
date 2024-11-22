@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct SettingView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 15, content:{
+            HStack{
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title)
+                        .tint(.gray)
+                    
+                })
+            }
+        })
     }
 }
 
 #Preview {
     SettingView()
+        .vSpacing(.bottom)
 }
