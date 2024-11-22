@@ -23,7 +23,7 @@ struct HomeView<Content: View, Item: RandomAccessCollection>: View where Item.El
                     ForEach(items) { item in
                         content(item)
                             .frame(width: itemWidth)
-                            .reflection(_added: true)
+                            .reflection(true)
                     }
                 }
                 .padding(.horizontal,(size.width - itemWidth) / 2)
