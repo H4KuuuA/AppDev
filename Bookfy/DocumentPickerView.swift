@@ -8,7 +8,7 @@ import SwiftUI
 import PDFKit
 
 // PDFデータをローカルストレージに保存する関数
-func savePDFToLcalStorage(pdfData: Data, fileName: String) -> URL? {
+func savePDFToLocalStorage(pdfData: Data, fileName: String) -> URL? {
     let fileManager = FileManager.default
     guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
         return nil
@@ -31,14 +31,14 @@ struct DocumentPicker: UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf])
         picker.delegate = context.coordinator
         picker.allowsMultipleSelection = false
         return picker
     }
-
+    
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
     
     class Coordinator: NSObject, UIDocumentPickerDelegate {
@@ -49,13 +49,22 @@ struct DocumentPicker: UIViewControllerRepresentable {
         }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-                // ここでif letを使ってURLが取得できたか確認
-                if let selectedURL = urls.first {
-                    parent.selectedURL = selectedURL
-                } else {
-                    print("PDFが選択されませんでした。")
+            // PDFを選択されたら、そのURLを保存する
+            if let selectedURL = urls.first {
+                // PDFデータを取得
+                if let pdfData = try? Data(contentsOf: selectedURL){
+                    // 保存処理
+                    let fileName = selectedURL.lastPathComponent
+                    if let savedURL = savePDFToLocalStorage(pdfData: pdfData, fileName: fileName) {
+                        // 保存されたURLを親Viewに渡す
+                        parent.selectedURL = selectedURL
+                        
+                    } else {
+                        print("PDFが選択されませんでした。")
+                    }
                 }
             }
+        }
         
         func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
             // ユーザーがキャンセルした場合の処理
