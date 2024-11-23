@@ -19,6 +19,15 @@ extension View {
     }
 }
 
+fileprivate struct UniverslOverlayModifier<ViewContent: View>: ViewModifier {
+    var animation: Animation
+    @Binding var show: Bool
+    @ViewBuilder var viewContent: ViewContent
+    
+    func body(content: Content) -> some View {
+        content
+    }
+}
 
 struct UniversalOverlay: View {
     var body: some View {
