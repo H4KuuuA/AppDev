@@ -16,7 +16,7 @@ extension View {
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         self
-            .modifier(UniverslOverlayModifier(animation: animation, show: show, viewContent: content))
+            .modifier(UniversalOverlayModifier(animation: animation, show: show, viewContent: content))
     }
 }
 
@@ -28,7 +28,18 @@ struct RootView<Content: View>: View {
     }
 }
 
-fileprivate struct UniverslOverlayModifier<ViewContent: View>: ViewModifier {
+/// Shared Universal Overlay Properities
+@Observable
+class UniversalOverlayProperities {
+    var window: UIWindow?
+    var views: [OverlayView] = []
+    
+    struct OverlayView: Identifiable {
+        var id: String = UUID().uuidString
+        var vieww: AnyView
+    }
+}
+fileprivate struct UniversalOverlayModifier<ViewContent: View>: ViewModifier {
     var animation: Animation
     @Binding var show: Bool
     @ViewBuilder var viewContent: ViewContent
