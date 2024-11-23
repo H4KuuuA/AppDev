@@ -11,7 +11,10 @@ import SwiftUI
 struct BookfyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            /// Setting Up Universal Overlay
+            RootView {
+                ContentView()
+            }
         }
     }
 }
