@@ -33,7 +33,7 @@ struct RootView<Content: View>: View {
             .onAppear{
                 if let widowScene = (UIApplication.shared.connectedScenes.first as? UIWindowScene),
                    properites.window == nil {
-                    let window = UIWindow(windowScene: widowScene)
+                    let window = PassThroughWindow(windowScene: widowScene)
                     window.isHidden = false
                     window.isUserInteractionEnabled = true
                     ///  Setting Up SwiftUI Based RootView Controller
@@ -74,6 +74,15 @@ fileprivate struct UniversalOverlayViews: View {
     }
 }
 
+fileprivate class PassThroughWindow: UIWindow {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let hitView = super.hitTest(point, with: event),
+                let rootView = rootViewController?.view
+        else { return nil }
+        
+        return hitView == rootView ? nil : hitView
+    }
+}
 #Preview {
     UniversalOverlayViews()
 }
