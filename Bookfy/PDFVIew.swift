@@ -26,11 +26,22 @@ struct PDFVIew: View {
     @State private var author: String = ""
     @State private var savedPDFs: [PDFMetadata] = []
     
+    // 保存ボタンが押されたときの処理
+        private func saveMetadata() {
+            // PDFメタデータの作成
+            let newMetadata = PDFMetadata(title: title, author: author)
+            
+            // 配列に追加（保存）
+            savedPDFs.append(newMetadata)
+            
+            // 保存が完了したことを表示（アラートやログなど）
+            print("PDF Metadata Saved: \(newMetadata)")
+        }
     var body: some View {
         NavigationStack {
             List{
                 // PDF選択ボタン
-                Section {
+                Section("Select PDF from Files") {
                     Button("PDFを選択") {
                         showDocumentPicker.toggle()
                     }
@@ -43,9 +54,6 @@ struct PDFVIew: View {
                             PDFViewer(fileURL: pdfURL, recognisedText: $recognisedText)  // バインディングを渡す
                         }
                     }
-                } header: {
-                    Text("Select PDF from Files")
-                        .textCase(.none)
                 }
                 // OCR結果表示セクション
 //                if !recognisedText.isEmpty {
