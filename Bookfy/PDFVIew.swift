@@ -6,15 +6,25 @@
 //
 
 import SwiftUI
+import PDFKit
 
 enum PDF {
     static let single = "Single PDF"
     static let multiple = "Multiple PDF"
 }
+// PDFのメタデータを管理する構造体
+struct PDFMetadata {
+    var title: String
+    var author: String
+}
+
 struct PDFVIew: View {
     @State private var selectedPDF: URL?
     @State private var showDocumentPicker = false
     @State private var recognisedText: String = ""  // OCR結果を保存する状態変数
+    @State private var title: String = ""
+    @State private var author: String = ""
+    @State private var savedPDFs: [PDFMetadata] = []
     
     var body: some View {
         NavigationStack {
