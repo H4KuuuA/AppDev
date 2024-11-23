@@ -19,12 +19,12 @@ struct ContentView: View {
             // 他のタブを追加することもできます
             Text("Notifications")
                 .tabItem {
-                    Label("追加", systemImage: "plus.square.fill.on.square.fill")
+                    Label("追加", systemImage: "square.and.arrow.down.fill")
                 }
             
             Text("Settings")
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape")
+                    Label("設定", systemImage: "gearshape")
                 }
         }
     }

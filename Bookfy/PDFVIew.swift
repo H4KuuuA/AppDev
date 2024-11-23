@@ -38,15 +38,16 @@ struct PDFVIew: View {
                         .textCase(.none)
                 }
                 // OCR結果表示セクション
-                if !recognisedText.isEmpty {
-                    Section(header: Text("OCR Result")) {
-                        ScrollView {
-                            Text(recognisedText)
-                                .padding()
-                        }
-                    }
-                }
+//                if !recognisedText.isEmpty {
+//                    Section(header: Text("OCR Result")) {
+//                        ScrollView {
+//                            Text(recognisedText)
+//                                .padding()
+//                        }
+//                    }
+//                }
             }
+            .navigationTitle("ダウンロード")
         }
     }
 }
