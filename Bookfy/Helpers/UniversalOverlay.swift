@@ -77,6 +77,26 @@ fileprivate struct UniversalOverlayModifier<ViewContent: View>: ViewModifier {
                 }
             }
     }
+    
+    private func addview() {
+            if properites.window != nil && viewID == nil {
+                viewID = UUID().uuidString
+                guard let viewID else { return }
+                
+                withAnimation(animation) {
+                    properites.views.append(.init(id: viewID, view: .init(viewContent)))
+                }
+                self.viewID = nil
+            }
+        }
+        
+        private func removeView () {
+            if let viewID {
+                withAnimation(animation) {
+                    properites.views.removeAll(where: { $0.id == viewID})
+                }
+            }
+        }
 }
 
 fileprivate struct UniversalOverlayViews: View {
