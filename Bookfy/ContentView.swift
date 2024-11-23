@@ -34,28 +34,6 @@ struct ContentView: View {
                 
                 Spacer(minLength: 0)
                 
-                /// Customization View
-                VStack(alignment: .leading, spacing: 10, content: {
-                    Toggle("Toggle Spacing", isOn: $enableReflection)
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                    Slider(value: $spacing, in: -120...20)
-                        .onChange(of: spacing) { newValue in
-                            print("Spacing value changed: \(newValue)")
-                        }
-                    
-                    Text("Card Rotaion")
-                        .font(.caption2)
-                        .foregroundStyle(.gray)
-                    
-                    Slider(value:  $rotation, in: 0...180)
-                        .onChange(of: rotation) { newValue in
-                            print("Spacing value changed: \(newValue)")
-                        }
-                })
-                .padding(15)
-                .background(.ultraThinMaterial, in: .rect(cornerRadius: 10))
-                .padding(15)
             }
             .navigationTitle("Bookfy")
         }
