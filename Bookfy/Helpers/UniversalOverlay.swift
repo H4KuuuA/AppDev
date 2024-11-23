@@ -16,6 +16,15 @@ extension View {
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         self
+            .modifier(UniverslOverlayModifier(animation: animation, show: show, viewContent: content))
+    }
+}
+
+/// Root View Wrapper
+struct RootView<Content: View>: View {
+    @ViewBuilder var content: Content
+    var body: some View {
+        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
     }
 }
 
