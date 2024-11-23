@@ -28,6 +28,7 @@ struct HomeView<Content: View, Item: RandomAccessCollection>: View where Item.El
                                 content
                                     .rotation3DEffect(.init(degrees:  rotation(geometryProxy)),axis: (x: 0, y: 1, z: 0),  anchor: .center)
                             }
+                            .padding(.trailing, item.id == items.last? .id ? 0 : spacing)
                     }
                 }
                 .padding(.horizontal,(size.width - itemWidth) / 2)
@@ -48,8 +49,9 @@ struct HomeView<Content: View, Item: RandomAccessCollection>: View where Item.El
         let progress = midX / scrollViewWidth
         /// Limiting progress berween 0~1
         let cappedProgress = max(min(progress,1), 0)
-        
-        return cappedProgress * rotation
+        let cappedRotation = max(min(rotation, 90), 0)
+        let degree = cappedProgress * (cappedRotation * 2)
+        return cappedRotation - degree
     }
 }
 

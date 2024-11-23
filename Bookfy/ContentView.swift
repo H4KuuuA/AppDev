@@ -12,9 +12,9 @@ struct ContentView: View {
         return .init(color: $0)
     }
     /// View properities
-    @State private var spacing: CGFloat = 0
-    @State private var rotation: CGFloat = .zero
-    @State private var enableReflection: Bool = false
+    @State private var spacing: CGFloat = -50
+    @State private var rotation: CGFloat = 45
+    @State private var enableReflection: Bool = true
     
     var body: some View {
         NavigationStack{
@@ -30,22 +30,28 @@ struct ContentView: View {
                 RoundedRectangle(cornerRadius: 20)
                         .fill(item.color.gradient)
                 }
-                .frame(height: 180)
+                .frame(height: 360)
                 
                 Spacer(minLength: 0)
                 
                 /// Customization View
                 VStack(alignment: .leading, spacing: 10, content: {
-                    Toggle("Toggle reflection", isOn: $enableReflection)
+                    Toggle("Toggle Spacing", isOn: $enableReflection)
                         .font(.caption2)
                         .foregroundColor(.gray)
-                    Slider(value: $spacing, in: -90...20)
+                    Slider(value: $spacing, in: -120...20)
+                        .onChange(of: spacing) { newValue in
+                            print("Spacing value changed: \(newValue)")
+                        }
                     
-                    Text("Card Spacing")
+                    Text("Card Rotaion")
                         .font(.caption2)
                         .foregroundStyle(.gray)
                     
-                    Slider(value:  $rotation, in: -90...20)
+                    Slider(value:  $rotation, in: 0...180)
+                        .onChange(of: rotation) { newValue in
+                            print("Spacing value changed: \(newValue)")
+                        }
                 })
                 .padding(15)
                 .background(.ultraThinMaterial, in: .rect(cornerRadius: 10))
