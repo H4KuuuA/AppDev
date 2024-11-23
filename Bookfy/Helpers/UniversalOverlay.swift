@@ -22,9 +22,28 @@ extension View {
 
 /// Root View Wrapper
 struct RootView<Content: View>: View {
-    @ViewBuilder var content: Content
+    var content: Content
+    init(@ViewBuilder content : @escaping() -> Content) {
+        self.content = content()
+    }
+    var  properites = UniversalOverlayProperities()
     var body: some View {
-        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+        content
+            .environment(properites)
+            .onAppear{
+                if let widowScene = (UIApplication.shared.connectedScenes.first as? UIWindowScene),
+                   properites.window == nil {
+                    let window = UIWindow(windowScene: widowScene)
+                    window.isHidden = false
+                    window.isUserInteractionEnabled = true
+                    ///  Setting Up SwiftUI Based RootView Controller
+                    let rootViewController = UIHostingController(rootView: UniversalOverlayViews().environment(properites))
+                    rootViewController.view.backgroundColor = .clear
+                    window.rootViewController = rootViewController
+                    properites.window = window
+                }
+
+            }
     }
 }
 
@@ -49,12 +68,12 @@ fileprivate struct UniversalOverlayModifier<ViewContent: View>: ViewModifier {
     }
 }
 
-struct UniversalOverlay: View {
+fileprivate struct UniversalOverlayViews: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    UniversalOverlay()
+    UniversalOverlayViews()
 }
