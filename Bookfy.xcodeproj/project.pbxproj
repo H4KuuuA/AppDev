@@ -22,6 +22,7 @@
 		68071CD42CEFFFD2004AF02B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CD32CEFFFD2004AF02B /* View+Extensions.swift */; };
 		68071CD82CF04253004AF02B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071CD72CF04253004AF02B /* HomeView.swift */; };
 		68071D102CF16B5E004AF02B /* UniversalOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071D0F2CF16B5E004AF02B /* UniversalOverlay.swift */; };
+		68071D122CF19AA8004AF02B /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68071D112CF19AA7004AF02B /* BookHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		68071CD32CEFFFD2004AF02B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		68071CD72CF04253004AF02B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		68071D0F2CF16B5E004AF02B /* UniversalOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalOverlay.swift; sourceTree = "<group>"; };
+		68071D112CF19AA7004AF02B /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				68071CD22CEFFF9A004AF02B /* Helpers */,
 				68071CD02CEFFB8E004AF02B /* SettingView.swift */,
 				68071C9C2CEC343F004AF02B /* ContentView.swift */,
+				68071D112CF19AA7004AF02B /* BookHomeView.swift */,
 				68071CD72CF04253004AF02B /* HomeView.swift */,
 				68071CC82CEC5305004AF02B /* PDFVIew.swift */,
 				68071CCE2CED65EA004AF02B /* Scandocument.swift */,
@@ -297,6 +300,7 @@
 				68071CD12CEFFB8E004AF02B /* SettingView.swift in Sources */,
 				68071CCB2CEC588C004AF02B /* PDFViewer.swift in Sources */,
 				68071C9B2CEC343F004AF02B /* BookfyApp.swift in Sources */,
+				68071D122CF19AA8004AF02B /* BookHomeView.swift in Sources */,
 				68071CD42CEFFFD2004AF02B /* View+Extensions.swift in Sources */,
 				68071CCF2CED65EA004AF02B /* Scandocument.swift in Sources */,
 			);
