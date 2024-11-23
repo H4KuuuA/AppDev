@@ -82,6 +82,14 @@ fileprivate class PassThroughWindow: UIWindow {
                 let rootView = rootViewController?.view
         else { return nil }
         
+        if #available(iOS 18, *) {
+            for subview in rootView.subviews.reversed() {
+                /// Finding if any of rootview's is  receving hit test
+                let pointInSubView = subview.convert(point,from: rootView)
+                if subview.hitTest(pointInSubView, with: event) == subview {
+                    return hitView
+                }
+            }        }
         return hitView == rootView ? nil : hitView
     }
 }
