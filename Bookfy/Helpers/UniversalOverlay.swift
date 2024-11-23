@@ -55,23 +55,35 @@ class UniversalOverlayProperities {
     
     struct OverlayView: Identifiable {
         var id: String = UUID().uuidString
-        var vieww: AnyView
+        var view: AnyView
     }
 }
 fileprivate struct UniversalOverlayModifier<ViewContent: View>: ViewModifier {
     var animation: Animation
     @Binding var show: Bool
     @ViewBuilder var viewContent: ViewContent
+    /// Local View Properites
+    @Environment(UniversalOverlayProperities.self) private var properites
+    
+    @State private var viewID: String?
     
     func body(content: Content) -> some View {
         content
+            .onChange(of: show) { oldValue, newValue in
+                if newValue {
+                    
+                }else {
+                    
+                }
+            }
     }
 }
 
 fileprivate struct UniversalOverlayViews: View {
+    @Environment(UniversalOverlayProperities.self) private var properities
     var body: some View {
-        Button("Tap") {
-            print("Tapped")
+        ZStack{
+            
         }
     }
 }
@@ -93,6 +105,6 @@ fileprivate class PassThroughWindow: UIWindow {
         return hitView == rootView ? nil : hitView
     }
 }
-#Preview {
-    UniversalOverlayViews()
-}
+//#Preview {
+//    UniversalOverlayViews()
+//}
